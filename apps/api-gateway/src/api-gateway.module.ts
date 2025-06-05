@@ -1,10 +1,25 @@
-import { Module } from '@nestjs/common';
-import { ApiGatewayController } from './api-gateway.controller';
-import { ApiGatewayService } from './api-gateway.service';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
+import { KeyvRedisCacheModule } from './cache';
+import { LoggerMiddleware } from './middleware/logger.middleware';
+import { RmqModule } from './rmq/rmq.module';
 
 @Module({
-  imports: [],
-  controllers: [ApiGatewayController],
-  providers: [ApiGatewayService],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    RmqModule,
+    KeyvRedisCacheModule,
+    AuthModule,
+    // CacheConfigModule, // Uncomment if using CacheModule with cache-manager-redis-store
+  ],
+  controllers: [],
+  providers: [],
 })
-export class ApiGatewayModule {}
+export class ApiBootstrapModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes('*');
+  }
+}

@@ -1,0 +1,71 @@
+import {
+  AuthQueueMessages,
+  AuthServiceConstants,
+  handlePromise,
+} from '@app/common';
+import { SignUpDto } from '@app/dto/auth';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
+import { firstValueFrom, timeout } from 'rxjs';
+
+@Injectable()
+export class AuthService {
+  constructor(
+    @Inject(AuthServiceConstants.AUTH_SERVICE)
+    private readonly authServiceClient: ClientProxy,
+  ) {}
+
+  async getPong(): Promise<string> {
+    const [error, data] = await handlePromise<string>(
+      firstValueFrom(
+        this.authServiceClient
+          .send<string>({ cmd: 'auth.ping' }, {})
+          .pipe(timeout(5000)),
+      ),
+    );
+
+    if (error) {
+      throw new Error(error.message || 'Error occurred while getting pong');
+    }
+    return data;
+  }
+
+  async register(data: SignUpDto): Promise<string> {
+    const [error, response] = await handlePromise<string>(
+      firstValueFrom(
+        this.authServiceClient
+          .send<string>({ cmd: AuthQueueMessages.SIGN_UP }, data)
+          .pipe(timeout(5000)),
+      ),
+    );
+
+    if (error) {
+      throw new BadRequestException(error.message);
+    }
+    return response;
+  }
+
+  // signIn(credentials: any) {
+  //   return this.authServiceClient.signIn(credentials);
+  // }
+
+  // signOut(token: string) {
+  //   return this.authServiceClient.signOut(token);
+  // }
+
+  // refreshToken(token: string) {
+  //   return this.authServiceClient.refreshToken(token);
+  // }
+
+  // forgotPassword(email: string) {
+  //   return this.authServiceClient.forgotPassword(email);
+  // }
+
+  // resetPassword(token: string, newPassword: string) {
+  //   return this.authServiceClient.resetPassword(token, newPassword);
+  // }
+
+  // changePassword(oldPassword: string, newPassword: string) {
+  //   return this.authServiceClient.changePassword(oldPassword, newPassword);
+  // }
+}
