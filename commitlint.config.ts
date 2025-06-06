@@ -2,7 +2,7 @@ export default {
   extends: ['@commitlint/config-conventional'],
   rules: {
     // ✅ Enforce allowed scopes (project prefixes)
-    'scope-enum': [2, 'always', ['general', 'api-g', 'auth']],
+    'scope-enum': [2, 'always', ['general', 'api-gateway', 'auth-ms']],
 
     // ✅ Enforce allowed types
     'type-enum': [

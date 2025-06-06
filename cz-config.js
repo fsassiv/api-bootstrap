@@ -11,7 +11,7 @@ module.exports = {
     { value: 'revert', name: 'revert:   Revert' },
     { value: 'note', name: 'note:   General annotation' },
   ],
-  scopes: [{ name: 'api-g' }, { name: 'auth' }, { name: 'general' }],
+  scopes: [{ name: 'api-gateway' }, { name: 'auth-ms' }, { name: 'general' }],
   allowCustomScopes: false,
   allowBreakingChanges: ['feat', 'fix'],
   skipQuestions: ['body', 'footer'],
