@@ -1,6 +1,10 @@
 export default {
   extends: ['@commitlint/config-conventional'],
   rules: {
+    // ✅ Enforce allowed scopes (project prefixes)
+    'scope-enum': [2, 'always', ['-', 'api-g', 'auth']],
+
+    // ✅ Enforce allowed types
     'type-enum': [
       2,
       'always',
@@ -18,6 +22,7 @@ export default {
         'note',
       ],
     ],
+
     'subject-case': [
       2,
       'never',
