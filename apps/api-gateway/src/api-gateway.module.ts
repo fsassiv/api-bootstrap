@@ -2,7 +2,7 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { KeyvRedisCacheModule } from './cache';
-import { LoggerMiddleware } from './middleware/logger.middleware';
+import { LoggerMiddleware } from './middleware';
 import { RmqModule } from './rmq/rmq.module';
 
 @Module({

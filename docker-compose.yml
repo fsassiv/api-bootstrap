@@ -1,8 +1,10 @@
+version: '3.9'
+
 services:
   api-gateway:
     build:
       context: .
-      dockerfile: apps/api-gateway/Dockerfile
+      dockerfile: apps/api-gateway/Dockerfile.dev # 👉 Swap with `Dockerfile` for prod
     container_name: api-gateway
     ports:
       - '3100:3100'
@@ -14,14 +16,17 @@ services:
       - auth-ms
     networks:
       - api-bootstrap-network
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
 
   auth-ms:
     build:
       context: .
-      dockerfile: apps/auth/Dockerfile
+      dockerfile: apps/auth/Dockerfile.dev # 👉 Swap with `Dockerfile` for prod
     container_name: auth-ms-service
-    # ports:
-    #   - '3101:3101'
+    ports:
+      - '3101:3101'
     env_file:
       - .env
     depends_on:
@@ -29,6 +34,9 @@ services:
       - mongodb
     networks:
       - api-bootstrap-network
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
 
   redis:
     image: redis:7.2-alpine
@@ -39,11 +47,6 @@ services:
       - api-bootstrap-network
     volumes:
       - redis-data:/data
-    # healthcheck:
-    #   test: ['CMD', 'redis-cli', 'ping']
-    #   interval: 30s
-    #   timeout: 10s
-    #   retries: 5
 
   rabbitmq:
     image: rabbitmq:3-management
@@ -60,11 +63,6 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
-    # healthcheck:
-    #   test: ['CMD', 'rabbitmq-diagnostics', 'ping']
-    #   interval: 30s
-    #   timeout: 10s
-    #   retries: 5
 
   mongodb:
     image: mongo:7.0
@@ -81,12 +79,6 @@ services:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
       MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
-    # healthcheck:
-    #   test: ['CMD', 'mongosh', '--eval', "db.adminCommand('ping')"]
-    #   interval: 30s
-    #   timeout: 10s
-    #   retries: 5
-    #   start_period: 20s
 
   postgres:
     image: postgres:16
@@ -103,12 +95,6 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
-    # healthcheck:
-    #   test: ['CMD-SHELL', 'pg_isready -U $POSTGRES_USER']
-    #   interval: 30s
-    #   timeout: 10s
-    #   retries: 5
-    #   start_period: 20s
 
 networks:
   api-bootstrap-network:

@@ -1,29 +1,21 @@
-# Stage 1: Build
-FROM node:20.11.1-alpine3.19 AS builder
+FROM node:20-alpine as builder
 
 WORKDIR /usr/src/app
 
-# Copy root files
 COPY package*.json ./
-COPY nest-cli.json ./
-COPY tsconfig*.json ./
+RUN npm install
 
-# Copy apps and libs
-COPY apps ./apps
-COPY libs ./libs
-
-RUN npm install --legacy-peer-deps
+COPY . .
 RUN npm run build api-gateway
 
-# Stage 2: Production
-FROM node:20.11.1-alpine3.19
+# Production Image
+FROM node:20-alpine
 
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-COPY --from=builder /usr/src/app/dist ./dist
-COPY --from=builder /usr/src/app/node_modules ./node_modules
+RUN npm install --only=production
 
-EXPOSE 3100
+COPY --from=builder /usr/src/app/dist ./dist
 
 CMD ["node", "dist/apps/api-gateway/main.js"]
