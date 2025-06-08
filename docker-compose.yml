@@ -13,18 +13,18 @@ services:
     depends_on:
       - rabbitmq
       - redis
-      - auth-ms
+      - auth-service
     networks:
       - api-bootstrap-network
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
 
-  auth-ms:
+  auth-service:
     build:
       context: .
       dockerfile: apps/auth/Dockerfile.dev # 👉 Swap with `Dockerfile` for prod
-    container_name: auth-ms-service
+    container_name: auth-service
     ports:
       - '3101:3101'
     env_file:

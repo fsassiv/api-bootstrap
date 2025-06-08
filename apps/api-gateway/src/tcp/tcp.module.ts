@@ -8,17 +8,14 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
     ClientsModule.register([
       {
         name: AuthServiceConstants.AUTH_SERVICE,
-        transport: Transport.RMQ,
+        transport: Transport.TCP,
         options: {
-          urls: [process.env.RABBITMQ_URL ?? 'amqp://localhost:5672'],
-          queue: 'placeholder_queue',
-          queueOptions: {
-            durable: true,
-          },
+          host: 'auth-service', // 👈 service name in docker-compose
+          port: 4001,
         },
       },
     ]),
   ],
   exports: [ClientsModule],
 })
-export class RmqModule {}
+export class TcpModule {}
