@@ -18,4 +18,4 @@ RUN npm install --only=production
 
 COPY --from=builder /usr/src/app/dist ./dist
 
-CMD ["node", "dist/apps/auth/main.js"]
+CMD ["node", "dist/apps/auth-service/main.js"]

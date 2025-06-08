@@ -23,7 +23,7 @@ services:
   auth-service:
     build:
       context: .
-      dockerfile: apps/auth/Dockerfile.dev # 👉 Swap with `Dockerfile` for prod
+      dockerfile: apps/auth-service/Dockerfile.dev # 👉 Swap with `Dockerfile` for prod
     container_name: auth-service
     ports:
       - '3101:3101'
