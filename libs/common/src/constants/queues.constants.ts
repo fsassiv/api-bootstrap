@@ -1,3 +1,3 @@
-export const QUEUES = {
-  AUTH_QUEUE: 'auth_queue',
-};
+export enum QUEUES {
+  AUTH_QUEUE = 'auth_queue',
+}

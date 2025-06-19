@@ -19,7 +19,7 @@ export class AuthService {
     const [error, data] = await handlePromise<string>(
       firstValueFrom(
         this.authServiceClient
-          .send<string>({ cmd: 'auth.ping' }, {})
+          .send<string>({ cmd: AUTH_QUEUE_MESSAGES.PING }, {})
           .pipe(timeout(5000)),
       ),
     );
