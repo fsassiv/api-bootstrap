@@ -1,8 +1,9 @@
-export enum AuthServiceConstants {
+export enum AUTH_SERVICE_CONSTANTS {
   AUTH_SERVICE = 'AUTH_SERVICE',
 }
 
-export const AuthQueueMessages = {
+export const AUTH_QUEUE_MESSAGES = {
+  PING: 'auth.ping',
   SIGN_UP: 'auth.signUp',
   SIGN_IN: 'auth.signIn',
   SIGN_OUT: 'auth.signOut',

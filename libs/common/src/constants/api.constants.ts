@@ -1,3 +1,3 @@
-export enum ApiServiceContants {
+export enum API_SERVICE_CONSTANTS {
   CACHE_INSTANCE = 'CACHE_INSTANCE',
 }

@@ -3,6 +3,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument, UserModel } from '../user/user.schema';
 import { generateHash } from './auth.utils';
+
 @Injectable()
 export class AuthService {
   constructor(@InjectModel(User.name) private UserModel: UserModel) {}

@@ -1,10 +1,11 @@
+import { QUEUES } from '@app/common/constants';
 import { Transport } from '@nestjs/microservices';
 
 export const RMQTransportConfig = {
   transport: Transport.RMQ,
   options: {
     urls: [process.env.RABBITMQ_URL || 'amqp://guest:guest@rabbitmq:5672'],
-    queue: 'auth_queue',
+    queue: QUEUES.AUTH_QUEUE,
     queueOptions: {
       durable: true,
     },

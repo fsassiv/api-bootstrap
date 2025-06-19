@@ -1,6 +1,6 @@
 import {
-  AuthQueueMessages,
-  AuthServiceConstants,
+  AUTH_QUEUE_MESSAGES,
+  AUTH_SERVICE_CONSTANTS,
   handlePromise,
 } from '@app/common';
 import { SignUpDto } from '@app/dto/auth';
@@ -11,7 +11,7 @@ import { firstValueFrom, timeout } from 'rxjs';
 @Injectable()
 export class AuthService {
   constructor(
-    @Inject(AuthServiceConstants.AUTH_SERVICE)
+    @Inject(AUTH_SERVICE_CONSTANTS.AUTH_SERVICE)
     private readonly authServiceClient: ClientProxy,
   ) {}
 
@@ -34,7 +34,7 @@ export class AuthService {
     const [error, response] = await handlePromise<string>(
       firstValueFrom(
         this.authServiceClient
-          .send<string>({ cmd: AuthQueueMessages.SIGN_UP }, data)
+          .send<string>({ cmd: AUTH_QUEUE_MESSAGES.SIGN_UP }, data)
           .pipe(timeout(5000)),
       ),
     );
