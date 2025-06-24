@@ -3,7 +3,7 @@ import {
   AUTH_SERVICE_CONSTANTS,
   handlePromise,
 } from '@app/common';
-import { SignUpDto } from '@app/dto/auth';
+import { CreateDefaultUserDto } from '@app/common/auth/application/dto/create-user.dto';
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { firstValueFrom, timeout } from 'rxjs';
@@ -30,7 +30,7 @@ export class AuthService {
     return data;
   }
 
-  async register(data: SignUpDto): Promise<string> {
+  async register(data: CreateDefaultUserDto): Promise<string> {
     const [error, response] = await handlePromise<string>(
       firstValueFrom(
         this.authServiceClient

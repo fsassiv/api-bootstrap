@@ -16,7 +16,7 @@ export const RMQTransportConfig = {
 export const TCPTransportConfig = {
   transport: Transport.TCP,
   options: {
-    host: '0.0.0.0',
+    host: 'auth-service',
     port: 4001,
   },
 };
