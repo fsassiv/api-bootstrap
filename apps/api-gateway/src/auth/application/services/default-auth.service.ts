@@ -17,7 +17,7 @@ export class DefaultAuthService {
   ) {}
 
   async getPong(): Promise<string> {
-    const [error, data] = await handlePromise<string>(
+    const [error, response] = await handlePromise<string>(
       firstValueFrom(
         this.authServiceClient
           .send<string>({ cmd: AUTH_QUEUE_MESSAGES.PING }, {})
@@ -28,7 +28,7 @@ export class DefaultAuthService {
     if (error) {
       throw new Error(error.message || 'Error occurred while getting pong');
     }
-    return data;
+    return response;
   }
 
   async registerDefaultUser(data: CreateDefaultUserDto): Promise<User> {
