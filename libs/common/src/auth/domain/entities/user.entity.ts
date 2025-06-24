@@ -1,10 +1,11 @@
 import { AuthType } from '../enums/auth-type.enum';
+import { Role } from '../enums/role.enum';
 
 export class UserEntity {
   constructor(
     public readonly email: string,
     public hash: string | null = null,
-    public roles: string[] = [],
+    public roles: Role[] = [Role.USER],
     public authType: AuthType = AuthType.DEFAULT,
     public isMfaEnabled: boolean = false,
     public mfaSecret: string | null = null,

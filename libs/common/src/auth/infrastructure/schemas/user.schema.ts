@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Model } from 'mongoose';
 import { AuthType } from '../../domain/enums/auth-type.enum';
+import { Role } from '../../domain/enums/role.enum';
 
 @Schema({
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
@@ -13,10 +14,15 @@ export class User {
   @Prop({ required: false, default: null })
   hash?: string;
 
-  @Prop({ default: [] })
-  roles: string[];
+  @Prop({ default: [Role.USER] })
+  roles: Role[];
 
-  @Prop({ default: AuthType.DEFAULT })
+  @Prop({
+    default: AuthType.DEFAULT,
+    type: String,
+    enum: ['default', 'sso', 'default+mfa'],
+    required: true,
+  })
   authType: AuthType;
 
   // === MFA fields ===

@@ -1,5 +1,5 @@
-import { UserEntity } from '../../domain/entities/user.entity';
-import { UserDocument } from '../../infrastructure/schemas/user.schema';
+import { UserEntity } from '@app/common/auth/domain/entities/user.entity';
+import { UserDocument } from '@app/common/auth/infrastructure/schemas/user.schema';
 
 export class UserMapper {
   static toEntity(doc: UserDocument): UserEntity {

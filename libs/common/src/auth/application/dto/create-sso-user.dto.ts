@@ -1,7 +1,8 @@
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsBoolean, IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
-export class RegisterSsoUserDto {
+export class CreateSsoUserDto {
   @IsEmail()
+  @IsNotEmpty()
   email: string;
 
   @IsString()
@@ -12,5 +13,6 @@ export class RegisterSsoUserDto {
   @IsNotEmpty()
   providerId: string;
 
+  @IsBoolean()
   ssoEmailVerified: boolean;
 }
