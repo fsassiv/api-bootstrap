@@ -3,20 +3,21 @@ import {
   AUTH_SERVICE_CONSTANTS,
   handlePromise,
 } from '@app/common';
-import { SignUpDto } from '@app/dto/auth';
+import { CreateDefaultUserDto } from '@app/common/auth/application/dto';
+import { User } from '@app/common/auth/infrastructure/schemas/user.schema';
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { firstValueFrom, timeout } from 'rxjs';
 
 @Injectable()
-export class AuthService {
+export class DefaultAuthService {
   constructor(
     @Inject(AUTH_SERVICE_CONSTANTS.AUTH_SERVICE)
     private readonly authServiceClient: ClientProxy,
   ) {}
 
   async getPong(): Promise<string> {
-    const [error, data] = await handlePromise<string>(
+    const [error, response] = await handlePromise<string>(
       firstValueFrom(
         this.authServiceClient
           .send<string>({ cmd: AUTH_QUEUE_MESSAGES.PING }, {})
@@ -27,14 +28,14 @@ export class AuthService {
     if (error) {
       throw new Error(error.message || 'Error occurred while getting pong');
     }
-    return data;
+    return response;
   }
 
-  async register(data: SignUpDto): Promise<string> {
-    const [error, response] = await handlePromise<string>(
+  async registerDefaultUser(data: CreateDefaultUserDto): Promise<User> {
+    const [error, response] = await handlePromise<User>(
       firstValueFrom(
         this.authServiceClient
-          .send<string>({ cmd: AUTH_QUEUE_MESSAGES.SIGN_UP }, data)
+          .send<User>({ cmd: AUTH_QUEUE_MESSAGES.REGISTER_DEFAULT_USER }, data)
           .pipe(timeout(5000)),
       ),
     );

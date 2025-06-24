@@ -1,4 +1,4 @@
-import { QUEUES } from '@app/common/constants';
+import { QUEUES } from '@app/common';
 import { Transport } from '@nestjs/microservices';
 
 export const RMQTransportConfig = {
@@ -10,13 +10,5 @@ export const RMQTransportConfig = {
       durable: true,
     },
     port: process.env.AUTH_SERVICE_PORT || 3101,
-  },
-};
-
-export const TCPTransportConfig = {
-  transport: Transport.TCP,
-  options: {
-    host: 'auth-service',
-    port: 4001,
   },
 };

@@ -11,4 +11,5 @@ export enum AUTH_QUEUE_MESSAGES {
   FORGOT_PASSWORD = 'auth.forgotPassword',
   RESET_PASSWORD = 'auth.resetPassword',
   CHANGE_PASSWORD = 'auth.changePassword',
+  REGISTER_DEFAULT_USER = 'auth.registerDefaultUser',
 }
