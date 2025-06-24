@@ -14,6 +14,28 @@ export class User {
 
   @Prop({ default: [] })
   roles: string[];
+
+  // For future
+
+  // === MFA fields ===
+  // @Prop({ default: false })
+  // isMfaEnabled: boolean;
+
+  // @Prop({ required: false })
+  // mfaSecret?: string;
+
+  // @Prop({ type: [String], default: [] })
+  // mfaRecoveryCodes?: string[];
+
+  // // === SSO fields ===
+  // @Prop({ required: false })
+  // provider?: string;
+
+  // @Prop({ required: false })
+  // providerId?: string;
+
+  // @Prop({ default: false })
+  // ssoEmailVerified?: boolean;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

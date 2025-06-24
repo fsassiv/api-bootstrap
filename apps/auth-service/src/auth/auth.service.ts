@@ -14,18 +14,19 @@ export class AuthService {
   }): Promise<UserDocument> {
     const { email, password } = payload;
 
-    const newCredetials = new this.UserModel({
-      email,
-      hash: await generateHash(password),
-    });
-
     const [findEmailError, findEmailResponse] = await handlePromise(
       this.UserModel.findOne({ email }),
     );
 
     if (findEmailError) throw new BadRequestException(findEmailError);
 
+    const newCredetials = new this.UserModel({
+      email,
+      hash: await generateHash(password),
+    });
+
     const [error, newUser] = await handlePromise(newCredetials.save());
+
     // @ts-expect-error - MongooseError - Duplicate Key
     if (error?.code === 11000 || findEmailResponse) {
       throw new BadRequestException('Email already exists');
