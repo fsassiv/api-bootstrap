@@ -18,17 +18,30 @@ export class UserMapper {
   }
 
   static toPersistence(entity: UserEntity) {
+    const {
+      email,
+      hash,
+      roles,
+      authType,
+      isMfaEnabled,
+      mfaSecret,
+      mfaRecoveryCodes,
+      provider,
+      providerId,
+      ssoEmailVerified,
+    } = entity;
+
     return {
-      email: entity.email,
-      hash: entity.hash,
-      roles: entity.roles,
-      authType: entity.authType,
-      isMfaEnabled: entity.isMfaEnabled,
-      mfaSecret: entity.mfaSecret,
-      mfaRecoveryCodes: entity.mfaRecoveryCodes,
-      provider: entity.provider,
-      providerId: entity.providerId,
-      ssoEmailVerified: entity.ssoEmailVerified,
+      email,
+      hash,
+      roles,
+      authType,
+      isMfaEnabled,
+      mfaSecret,
+      mfaRecoveryCodes,
+      provider,
+      providerId,
+      ssoEmailVerified,
     };
   }
 }
