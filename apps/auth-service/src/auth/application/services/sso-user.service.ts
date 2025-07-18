@@ -1,6 +1,7 @@
 import { CreateSsoUserDto } from '@app/common/auth/application/dto';
 import { UserEntity } from '@app/common/auth/domain/entities/user.entity';
 import { AuthType } from '@app/common/auth/domain/enums/auth-type.enum';
+import { Role } from '@app/common/auth/domain/enums/role.enum';
 import { User } from '@app/common/auth/infrastructure/schemas/user.schema';
 import { Injectable } from '@nestjs/common';
 import { UserRegistrationService } from './user-registration.service';
@@ -19,7 +20,7 @@ export class RegisterSsoService {
     const entity = new UserEntity(
       email,
       null,
-      [],
+      [Role.USER],
       AuthType.SSO,
       false,
       null,
