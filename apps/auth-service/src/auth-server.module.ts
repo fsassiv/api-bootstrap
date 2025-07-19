@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { AuthModule } from './auth/auth.module';
-import { MongoDBModule } from './mongodb/mongodb.module';
+import { MongoDBModule } from './infrasctructure/mongodb/mongodb.module';
+import { AuthModule } from './presentation/auth.module';
 
 @Module({
   imports: [
@@ -14,4 +14,4 @@ import { MongoDBModule } from './mongodb/mongodb.module';
   controllers: [],
   providers: [],
 })
-export class AuthMSModule {}
+export class AuthServerModule {}

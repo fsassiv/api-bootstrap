@@ -5,10 +5,10 @@ import { AuthType } from '@app/common/domain/enums/auth/auth-type.enum';
 import { Role } from '@app/common/domain/enums/auth/role.enum';
 import { User } from '@app/common/infrastructure/database/mongoose/schemas/auth/user.schema';
 import { Injectable } from '@nestjs/common';
-import { UserRegistrationService } from './user-registration.service';
+import { UserRegistrationService } from '../services/user-registration.service';
 
 @Injectable()
-export class RegisterSsoService {
+export class AuthRegisterSsoUseCase {
   constructor(
     private readonly userRegistrationService: UserRegistrationService,
   ) {}

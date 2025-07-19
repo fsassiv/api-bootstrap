@@ -4,11 +4,11 @@ import { CreateDefaultUserDto } from '@app/common/application/auth/dtos/create-u
 import { User } from '@app/common/infrastructure/database/mongoose/schemas/auth/user.schema';
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import { DefaultUserService } from '../application/services/default-user.service';
+import { AuthDefaultUserUseCase } from '../../application/use-cases/default-user.use-case';
 
 @Controller()
 export class RegisterUserController {
-  constructor(private defaultUserService: DefaultUserService) {}
+  constructor(private authDefaultUserUseCase: AuthDefaultUserUseCase) {}
 
   @MessagePattern({ cmd: AUTH_QUEUE_MESSAGES.PING })
   getPong() {
@@ -17,6 +17,6 @@ export class RegisterUserController {
 
   @MessagePattern({ cmd: AUTH_QUEUE_MESSAGES.REGISTER_DEFAULT_USER })
   register(@Payload() payload: CreateDefaultUserDto): Promise<User> {
-    return this.defaultUserService.register(payload);
+    return this.authDefaultUserUseCase.register(payload);
   }
 }
