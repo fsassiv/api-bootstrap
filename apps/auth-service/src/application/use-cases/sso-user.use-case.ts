@@ -1,10 +1,9 @@
 import { CreateSsoUserDto } from '@app/common/application/auth/dtos';
-
-import { UserEntity } from '@app/common/domain/entities/auth/user.entity';
-import { AuthType } from '@app/common/domain/enums/auth/auth-type.enum';
-import { Role } from '@app/common/domain/enums/auth/role.enum';
-import { User } from '@app/common/infrastructure/database/mongoose/schemas/auth/user.schema';
 import { Injectable } from '@nestjs/common';
+import { UserEntity } from 'apps/auth-service/src/domain/entities/user.entity';
+import { AuthType } from 'apps/auth-service/src/domain/enums/auth-type.enum';
+import { User } from 'apps/auth-service/src/infrasctructure/database/mongoose/schemas/user.schema';
+import { Role } from '../../domain/enums/role.enum';
 import { UserRegistrationService } from '../services/user-registration.service';
 
 @Injectable()

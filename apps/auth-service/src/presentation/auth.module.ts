@@ -1,9 +1,9 @@
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 import {
   User,
   UserSchema,
-} from '@app/common/infrastructure/database/mongoose/schemas/auth/user.schema';
-import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
+} from 'apps/auth-service/src/infrasctructure/database/mongoose/schemas/user.schema';
 import { UserRegistrationService } from '../application/services/user-registration.service';
 import { AuthDefaultUserUseCase } from '../application/use-cases/default-user.use-case';
 import { RegisterUserController } from './controllers/register-user.controller';

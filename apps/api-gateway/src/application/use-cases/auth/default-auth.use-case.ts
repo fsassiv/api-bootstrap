@@ -4,7 +4,7 @@ import {
   handlePromise,
 } from '@app/common';
 import { CreateDefaultUserDto } from '@app/common/application/auth/dtos';
-import { User } from '@app/common/infrastructure/database/mongoose/schemas/auth/user.schema';
+import { User } from 'apps/auth-service/src/infrasctructure/database/mongoose/schemas/user.schema';
 
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';

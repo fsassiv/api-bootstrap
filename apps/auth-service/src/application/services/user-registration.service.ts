@@ -1,15 +1,15 @@
 import { handlePromise } from '@app/common';
-import { UserEntity } from '@app/common/domain/entities/auth/user.entity';
-import {
-  User,
-  UserModel,
-} from '@app/common/infrastructure/database/mongoose/schemas/auth/user.schema';
 import {
   BadRequestException,
   ConflictException,
   Injectable,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { UserEntity } from 'apps/auth-service/src/domain/entities/user.entity';
+import {
+  User,
+  UserModel,
+} from 'apps/auth-service/src/infrasctructure/database/mongoose/schemas/user.schema';
 import { UserMapper } from '../mapper/user.mapper';
 
 @Injectable()

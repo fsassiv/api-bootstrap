@@ -1,5 +1,5 @@
-import { UserEntity } from '@app/common/domain/entities/auth/user.entity';
-import { UserDocument } from '@app/common/infrastructure/database/mongoose/schemas/auth/user.schema';
+import { UserEntity } from 'apps/auth-service/src/domain/entities/user.entity';
+import { UserDocument } from 'apps/auth-service/src/infrasctructure/database/mongoose/schemas/user.schema';
 
 export class UserMapper {
   static toEntity(doc: UserDocument): UserEntity {
