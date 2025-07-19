@@ -1,9 +1,9 @@
 import { handlePromise } from '@app/common';
-import { UserEntity } from '@app/common/auth/domain/entities/user.entity';
+import { UserEntity } from '@app/common/domain/auth/entities/user.entity';
 import {
   User,
   UserModel,
-} from '@app/common/auth/infrastructure/schemas/user.schema';
+} from '@app/common/infrastructure/database/mongoose/auth/schemas/user.schema';
 import {
   BadRequestException,
   ConflictException,

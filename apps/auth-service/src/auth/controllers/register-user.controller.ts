@@ -1,6 +1,7 @@
 import { AUTH_QUEUE_MESSAGES } from '@app/common';
-import { CreateDefaultUserDto } from '@app/common/auth/application/dto';
-import { User } from '@app/common/auth/infrastructure/schemas/user.schema';
+
+import { CreateDefaultUserDto } from '@app/common/application/auth/dtos/create-user.dto';
+import { User } from '@app/common/infrastructure/database/mongoose/auth/schemas/user.schema';
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { DefaultUserService } from '../application/services/default-user.service';

@@ -1,7 +1,8 @@
-import { CreateDefaultUserDto } from '@app/common/auth/application/dto';
-import { UserEntity } from '@app/common/auth/domain/entities/user.entity';
-import { Role } from '@app/common/auth/domain/enums/role.enum';
-import { User } from '@app/common/auth/infrastructure/schemas/user.schema';
+import { CreateDefaultUserDto } from '@app/common/application/auth/dtos';
+
+import { UserEntity } from '@app/common/domain/auth/entities/user.entity';
+import { Role } from '@app/common/domain/auth/enums/role.enum';
+import { User } from '@app/common/infrastructure/database/mongoose/auth/schemas/user.schema';
 import { Injectable } from '@nestjs/common';
 import { generateHash } from '../../utils/auth.utils';
 import { UserRegistrationService } from './user-registration.service';

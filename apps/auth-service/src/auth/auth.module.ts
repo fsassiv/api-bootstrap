@@ -1,7 +1,7 @@
 import {
   User,
   UserSchema,
-} from '@app/common/auth/infrastructure/schemas/user.schema';
+} from '@app/common/infrastructure/database/mongoose/auth/schemas/user.schema';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { DefaultUserService } from './application/services/default-user.service';

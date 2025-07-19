@@ -1,5 +1,6 @@
-import { CreateDefaultUserDto } from '@app/common/auth/application/dto';
-import { User } from '@app/common/auth/infrastructure/schemas/user.schema';
+import { CreateDefaultUserDto } from '@app/common/application/auth/dtos';
+
+import { User } from '@app/common/infrastructure/database/mongoose/auth/schemas/user.schema';
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { DefaultAuthUseCase } from '../../application/use-cases/auth/default-auth.use-case';
 

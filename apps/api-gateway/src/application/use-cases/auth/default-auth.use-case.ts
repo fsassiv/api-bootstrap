@@ -3,8 +3,9 @@ import {
   AUTH_SERVICE_CONSTANTS,
   handlePromise,
 } from '@app/common';
-import { CreateDefaultUserDto } from '@app/common/auth/application/dto';
-import { User } from '@app/common/auth/infrastructure/schemas/user.schema';
+import { CreateDefaultUserDto } from '@app/common/application/auth/dtos';
+import { User } from '@app/common/infrastructure/database/mongoose/auth/schemas/user.schema';
+
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { firstValueFrom, timeout } from 'rxjs';

@@ -1,7 +1,7 @@
+import { AuthType } from '@app/common/domain/auth/enums/auth-type.enum';
+import { Role } from '@app/common/domain/auth/enums/role.enum';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Model } from 'mongoose';
-import { AuthType } from '../../domain/enums/auth-type.enum';
-import { Role } from '../../domain/enums/role.enum';
 
 @Schema({
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
