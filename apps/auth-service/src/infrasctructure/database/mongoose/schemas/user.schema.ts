@@ -1,7 +1,9 @@
+// src/infrastructure/database/mongoose/schemas/user.schema.ts
+
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { AuthType } from 'apps/auth-service/src/domain/enums/auth-type.enum';
-import { Role } from 'apps/auth-service/src/domain/enums/role.enum';
 import { Document, Model } from 'mongoose';
+import { AuthType } from '../../../../domain/enums/auth-type.enum';
+import { Role } from '../../../../domain/enums/role.enum';
 
 @Schema({
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
@@ -11,8 +13,8 @@ export class User {
   @Prop({ required: true, unique: true })
   email: string;
 
-  @Prop({ required: false, default: null })
-  hash?: string;
+  @Prop({ required: false, default: null, type: String })
+  hash: string | null;
 
   @Prop({ default: [Role.USER] })
   roles: Role[];
@@ -20,7 +22,7 @@ export class User {
   @Prop({
     default: AuthType.DEFAULT,
     type: String,
-    enum: ['default', 'sso', 'default+mfa'],
+    enum: Object.values(AuthType),
     required: true,
   })
   authType: AuthType;
@@ -29,23 +31,30 @@ export class User {
   @Prop({ default: false })
   isMfaEnabled: boolean;
 
-  @Prop({ required: false })
-  mfaSecret?: string;
+  @Prop({ required: false, default: null, type: String })
+  mfaSecret: string | null;
 
   @Prop({ type: [String], default: [] })
-  mfaRecoveryCodes?: string[];
+  mfaRecoveryCodes: string[];
 
   // === SSO fields ===
-  @Prop({ required: false })
-  provider?: string;
 
-  @Prop({ required: false })
-  providerId?: string;
+  @Prop({ required: false, default: null, type: String })
+  provider: string | null;
+
+  @Prop({ required: false, default: null, type: String })
+  providerId: string | null;
 
   @Prop({ default: false })
-  ssoEmailVerified?: boolean;
+  ssoEmailVerified: boolean;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
-export type UserDocument = User & Document;
+
+export type UserDocument = User &
+  Document & {
+    created_at: Date;
+    updated_at: Date;
+  };
+
 export type UserModel = Model<UserDocument>;

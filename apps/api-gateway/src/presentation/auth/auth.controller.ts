@@ -5,7 +5,7 @@ import { User } from 'apps/auth-service/src/infrasctructure/database/mongoose/sc
 import { ApiDefaultAuthUseCase } from '../../application/use-cases/auth/default-auth.use-case';
 
 @Controller('auth')
-export class AuthController {
+export class ApiAuthController {
   constructor(
     private readonly apiApiDefaultAuthUseCase: ApiDefaultAuthUseCase,
   ) {}

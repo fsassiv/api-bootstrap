@@ -7,7 +7,7 @@ import { User } from 'apps/auth-service/src/infrasctructure/database/mongoose/sc
 import { AuthDefaultUserUseCase } from '../../application/use-cases/default-user.use-case';
 
 @Controller()
-export class RegisterUserController {
+export class AuthDefaultUserController {
   constructor(private authDefaultUserUseCase: AuthDefaultUserUseCase) {}
 
   @MessagePattern({ cmd: AUTH_QUEUE_MESSAGES.PING })

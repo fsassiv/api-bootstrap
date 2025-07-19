@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ApiDefaultAuthUseCase } from '../../application/use-cases/auth/default-auth.use-case';
-import { AuthController } from './auth.controller';
+import { ApiAuthController } from './auth.controller';
 
 @Module({
   imports: [],
-  controllers: [AuthController],
+  controllers: [ApiAuthController],
   providers: [ApiDefaultAuthUseCase],
   exports: [],
 })
