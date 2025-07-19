@@ -1,9 +1,9 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { AuthModule } from './auth/auth.module';
-import { KeyvRedisCacheModule } from './cache';
-import { LoggerMiddleware } from './middleware';
-import { TcpModule } from './tcp/tcp.module';
+import { TcpModule } from './infrastructure/clients/auth-service/tcp.module';
+import { KeyvRedisCacheModule } from './infrastructure/config/redis';
+import { LoggerMiddleware } from './infrastructure/middleware';
+import { ApiAuthModule } from './presentation/auth/auth.module';
 
 @Module({
   imports: [
@@ -12,14 +12,14 @@ import { TcpModule } from './tcp/tcp.module';
     }),
     // RmqModule,
     KeyvRedisCacheModule,
-    AuthModule,
+    ApiAuthModule,
     TcpModule,
     // CacheConfigModule, // Uncomment if using CacheModule with cache-manager-redis-store
   ],
   controllers: [],
   providers: [],
 })
-export class ApiBootstrapModule implements NestModule {
+export class ApiGatewayModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(LoggerMiddleware).forRoutes('*');
   }

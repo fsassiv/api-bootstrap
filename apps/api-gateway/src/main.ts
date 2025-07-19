@@ -2,10 +2,10 @@ import { HttpExceptionFilter } from '@app/common';
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import helmet from 'helmet';
-import { ApiBootstrapModule } from './api-gateway.module';
+import { ApiGatewayModule } from './api-gateway.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(ApiBootstrapModule);
+  const app = await NestFactory.create(ApiGatewayModule);
 
   app.use(helmet());
 

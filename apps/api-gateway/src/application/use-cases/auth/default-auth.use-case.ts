@@ -10,7 +10,7 @@ import { ClientProxy } from '@nestjs/microservices';
 import { firstValueFrom, timeout } from 'rxjs';
 
 @Injectable()
-export class DefaultAuthService {
+export class DefaultAuthUseCase {
   constructor(
     @Inject(AUTH_SERVICE_CONSTANTS.AUTH_SERVICE)
     private readonly authServiceClient: ClientProxy,
