@@ -1,5 +1,5 @@
-import { AuthType } from '../enums/auth-type.enum';
-import { Role } from '../enums/role.enum';
+import { AuthType } from '../../enums/auth/auth-type.enum';
+import { Role } from '../../enums/auth/role.enum';
 
 export class UserEntity {
   constructor(

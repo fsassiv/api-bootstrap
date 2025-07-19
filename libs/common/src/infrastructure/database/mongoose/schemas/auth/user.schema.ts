@@ -1,5 +1,5 @@
-import { AuthType } from '@app/common/domain/auth/enums/auth-type.enum';
-import { Role } from '@app/common/domain/auth/enums/role.enum';
+import { AuthType } from '@app/common/domain/enums/auth/auth-type.enum';
+import { Role } from '@app/common/domain/enums/auth/role.enum';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Model } from 'mongoose';
 
