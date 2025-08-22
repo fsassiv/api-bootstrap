@@ -2,10 +2,10 @@ import { CreateDefaultUserDto } from '@app/common/application/auth/dtos';
 import { Inject, Injectable } from '@nestjs/common';
 import { UserEntity } from '../../domain/entities/user.entity';
 import { Role } from '../../domain/enums/role.enum';
-import { IAuthUtilsService } from '../ports/auth-utils.service.port';
-
 import { AUTH_UTILS_SERVICE_TOKEN } from '../../shared/constants/injection-tokens';
+import { IAuthUtilsService } from '../ports/auth-utils.service.port';
 import { UserRegistrationService } from '../services/user-registration.service';
+
 @Injectable()
 export class AuthDefaultUserUseCase {
   constructor(

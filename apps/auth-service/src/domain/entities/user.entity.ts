@@ -2,49 +2,21 @@ import { AuthType } from '../enums/auth-type.enum';
 import { Role } from '../enums/role.enum';
 
 export class UserEntity {
-  public id: string;
-  public email: string;
-  public hash: string | null;
-  public roles: Role[];
-  public authType: AuthType;
-  public isMfaEnabled: boolean;
-  public mfaSecret: string | null;
-  public mfaRecoveryCodes: string[];
-  public provider: string | null;
-  public providerId: string | null;
-  public ssoEmailVerified: boolean;
-  public createdAt: Date;
-  public updatedAt: Date;
-
   constructor(
-    id: string | null = null,
-    email: string,
-    hash: string | null = null,
-    roles: Role[] = [Role.USER],
-    authType: AuthType = AuthType.DEFAULT,
-    isMfaEnabled: boolean = false,
-    mfaSecret: string | null = null,
-    mfaRecoveryCodes: string[] = [],
-    provider: string | null = null,
-    providerId: string | null = null,
-    ssoEmailVerified: boolean = false,
-    createdAt: Date | null = null,
-    updatedAt: Date | null = null,
-  ) {
-    this.id = id || '';
-    this.email = email;
-    this.hash = hash;
-    this.roles = roles;
-    this.authType = authType;
-    this.isMfaEnabled = isMfaEnabled;
-    this.mfaSecret = mfaSecret;
-    this.mfaRecoveryCodes = mfaRecoveryCodes;
-    this.provider = provider;
-    this.providerId = providerId;
-    this.ssoEmailVerified = ssoEmailVerified;
-    this.createdAt = createdAt || new Date();
-    this.updatedAt = updatedAt || new Date();
-  }
+    public id: string | null = '',
+    public email: string,
+    public hash: string | null = null,
+    public roles: Role[] = [Role.USER],
+    public authType: AuthType = AuthType.DEFAULT,
+    public isMfaEnabled: boolean = false,
+    public mfaSecret: string | null = null,
+    public mfaRecoveryCodes: string[] = [],
+    public provider: string | null = null,
+    public providerId: string | null = null,
+    public ssoEmailVerified: boolean = false,
+    public createdAt: Date = new Date(),
+    public updatedAt: Date = new Date(),
+  ) {}
 
   enableMfa(secret: string, recoveryCodes: string[]) {
     this.isMfaEnabled = true;
