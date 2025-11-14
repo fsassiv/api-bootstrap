@@ -20,6 +20,8 @@ async function bootstrap() {
 
   app.useGlobalFilters(new HttpExceptionFilter());
 
+  app.setGlobalPrefix('api/v1');
+
   await app.listen(process.env.APIGATEWAY_PORT ?? 3100);
 }
 void bootstrap();

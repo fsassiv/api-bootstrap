@@ -1,10 +1,16 @@
-FROM node:20.11.1-alpine3.19 AS builder
+FROM node:20-bullseye-slim AS builder
 
 WORKDIR /usr/src/app
 
+# Update system packages to pick up security fixes
+RUN apt-get update && \
+	apt-get upgrade -y && \
+	rm -rf /var/lib/apt/lists/*
+
 COPY package*.json ./
 
-RUN npm install
+# Use npm ci for reproducible, faster and safer installs
+RUN npm ci --prefer-offline --no-audit --no-fund
 
 COPY . .
 
